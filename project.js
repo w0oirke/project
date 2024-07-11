@@ -1,7 +1,8 @@
-// 재귀함수를 사용하여 배열의 모든 순열을 생성하고 출력하는 함수
+let uniquePermutations = new Set();
+
 function permuteArray(arr, l, r, count) {
     if (l === r) {
-        document.write(arr.join(" ") + "<br>");
+        uniquePermutations.add(arr.join(" "));
         count.value++;
     } else {
         for (let i = l; i <= r; i++) {
@@ -18,8 +19,12 @@ function swap(arr, i, j) {
     arr[j] = temp;
 }
 
-//arr = prompt("배열을 입력하세요").split(" ");
-arr = [1, 2, 3, 4, 5];
+let arr = prompt("배열을 입력하세요").split(" ");
 let count = { value: 0 };
 permuteArray(arr, 0, arr.length - 1, count);
-document.write("총 개수: " + count.value + "<br>");
+
+let uniquePermutationsArray = Array.from(uniquePermutations);
+for (let perm of uniquePermutationsArray) {
+    document.write(perm + "<br>");
+}
+document.write("총 개수 (중복된 수열까지 포함): " + count.value + "<br>");
